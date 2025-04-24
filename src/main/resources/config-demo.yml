@@ -1,10 +1,12 @@
 llm:
-  model: gpt-4o
-  api-key: sk-xxxxx
-  base-url: https://openai.com
+  provider: deepseek
+  model: deepseek-chat
+  api-key: sk-14a35efcf0db4c7cb573158622bcad98
+  base-url: https://api.deepseek.com
 database:
   db-type: MYSQL
-  host: 127.0.0.1
+  host: 106.54.240.161
+  port: 3306
   username: root
-  password: root
-  db-name: test
+  password: 8uhb^YJm
+  db-name: rookie_im_server

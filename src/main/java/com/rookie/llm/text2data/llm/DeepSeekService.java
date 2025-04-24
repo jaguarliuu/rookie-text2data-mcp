@@ -14,9 +14,9 @@ import org.springframework.ai.openai.api.OpenAiApi;
  * Created on: 2025/4/23
  * Description:
  */
-public class OpenAIService implements LLMMetaService {
+public class DeepSeekService implements LLMMetaService {
 
-    private static final Logger logger = LoggerFactory.getLogger(OpenAIService.class);
+    private static final Logger logger = LoggerFactory.getLogger(DeepSeekService.class);
 
     @Override
     public ChatModel initChatModel(AppConfig.LlmConfig llmConfig) {

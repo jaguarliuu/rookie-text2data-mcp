@@ -30,6 +30,10 @@ public class AppConfig {
     @Data
     @Validated
     public static class LlmConfig {
+
+        @NotBlank(message = "Provider is required")
+        private String provider;
+
         @NotBlank(message = "LLM mode is required")
         private String model;
 

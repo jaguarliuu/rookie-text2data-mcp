@@ -67,4 +67,30 @@ public class MySQLMetaService implements DatabaseMetaService{
         }
         return ddl;
     }
+
+    @Override
+    public List<Map<String, Object>> executeQuery(AppConfig.DatabaseConfig config, String sql) {
+        List<Map<String, Object>> resultList = new ArrayList<>();
+        try (Connection conn = connect(config);
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ResultSet rs = ps.executeQuery();
+            ResultSetMetaData metaData = rs.getMetaData();
+            int columnCount = metaData.getColumnCount();
+
+            // 遍历结果集
+            while (rs.next()) {
+                Map<String, Object> row = new HashMap<>();
+                for (int i = 1; i <= columnCount; i++) {
+                    String columnName = metaData.getColumnLabel(i);
+                    Object value = rs.getObject(i);
+                    row.put(columnName, value);
+                }
+                resultList.add(row);
+            }
+        } catch (SQLException e) {
+            logger.error("❌ 执行 SQL 查询失败: " + sql, e);
+        }
+        return resultList;
+    }
 }
